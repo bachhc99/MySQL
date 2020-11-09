@@ -41,3 +41,20 @@ Vậy thì các công cụ lưu trữ mà cta vừa nhắc tới bên trên có 
 Đầu tiên cần phải hiểu được Storage Engine là gì? Rất đơn giản Storage Engine cơ bản chỉ là cách lưu trữ dữ liệu trên hệ thống MySQL.
 Hiện nay có rất nhiều loại Storage Engine nhưng cta sẽ chỉ đi vào tìm hiểu về các loại phổ biến thôi nhé!
 # 1.Đầu tiên sẽ là MyISAM
+Đây là một Storage Engine mặc định và được sử dụng phổ biến nhất. - Ưu điểm Engine duy nhất hỗ trợ Full Text Search lập chỉ mục toàn văn, cung cấp thuật toán tìm kiếm khá giống Google. Kiến trúc đơn giản nên có tốc độ truy suất (đọc và tìm kiếm) nhanh nhất trong các loại Storage Engine. - Nhược điểm MyISAM hoạt động theo cơ chế Table Level Locking, nên khi có hành động thực hiện (thêm/sửa/xóa) 1 bản ghi nào đó trong table thì table đó sẽ bị khóa lại, chờ tới khi hành động này được thực hiện xong thì hành động kia mới tiếp tục được thực hiện. Kiến trúc đơn giản, không ràng buộc nên loại Storage Engine này rất dễ bị crash, hỏng chỉ mục với những table có số lượng bản ghi lớn.
+# 2.InnoDB
+Đây là Storage Engine mới hơn có nhiều tính năng và ưu điểm vượt trội hơn so với MyISAM. - Ưu điểm Engine này kiểm tra tính toàn vẹn và ràng buộc dữ liệu rất cao, khó xảy ra tình trạng hỏng chỉ mục và crash table. Hoạt động theo cơ chế Row Level Locking, vì vậy trong lúc thực hiện các hành động (thêm/sửa/xóa) trên 1 bản ghi, thì các hoạt động ở bản ghi khác trên table vẫn diễn ra bình thường. Hỗ trợ Transaction giúp đảm bảo an toàn khi thực hiện một khối lệnh SQL đảm bảo nhất quán dữ liệu. - Nhược điểm Hoạt động cần nhiều RAM hơn, nhưng nếu so sánh với MyISAM trong trường hợp tần suất Insert/Update/Delete lớn thì có khi sẽ lớn hơn vì cơ chế Table Level Locking sẽ gây ra hàng đợi lớn, gây chậm quá trình xử lý.(Đây là loại storage engine hay được sử dụng nhất hiện nay vì nó đảm bảo tính an toàn cũng như mối liên kết giữa các dữ liệu trên hệ thống).
+# 3.Memory
+Đặc điểm
+Còn được gọi là HEAP tables.
+Lưu trữ
+Tất cả dữ liệu đều nằm trên memory.
+
+Tính năng:
+Sau khi server restart, cấu trúc bảng được bảo toàn, dữ liệu bị mất hết.
+Memory engine sử dụng HASH index nên rất nhanh cho query lookup.
+Memory engine dùng table-level locking do vậy tính concurrency không cao.
+
+(thường được sử dụng để lưu trữ những dữ liệu tạm thời ví dụ khi bạn cần lưu quá nhiều thứ gì đó nhưng có thể sau này bạn ko cần nữa bạn nên sử dụng storage engin này vì sau khi bạn ko dùng nữa bạn chỉ cần thực hiện restart lại dữ liệu sẽ được giải phóng mà ko cần phải xóa)
+
+Qua những phần vừa nêu trên có lẽ các bạn cũng đã thấy đc các loại Storage Engine khác nhau ntn rồi phải ko? tới đây cũng kết thúc phần giới thiệu về MySQL rồi :)))
