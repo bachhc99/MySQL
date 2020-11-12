@@ -1,5 +1,10 @@
 # I.MySQL cơ bản
-Vậy MySQL là gì ?
+## Nội dung bài viết
+- [I. MySQL là gì](#1)
+- [II. MySQL hoạt dộng ntn?](#2)
+- [III Storage Engine](#3)
+
+## I.Vậy MySQL là gì ? <a name="1"></a>
 MySQL là một hệ thống quản trị cơ sở dữ liệu mã nguồn mở (Relational Database Management System, viết tắt là RDBMS) hoạt động theo mô hình client-server. RDBMS là một phần mềm hay dịch vụ dùng để tạo và quản lý các cơ sở dữ liệu (Database) theo hình thức quản lý các mối liên hệ giữa chúng.
 Vậy chúng ta cần phải biết RDBMS là gì . Thì ở đây chúng ta sẽ có 2 khái niệm là DBMS và RDBMS
 DBMS viết tắt là Database Management System hay còn gọi là hệ thống quản trị csdl
@@ -10,7 +15,7 @@ Trong RDBMS, các bảng sẽ có một mã định danh được gọi là khó
 Vậy như đã nói ở trên MySQL hoạt động theo mô hình client-server. vậy cta cần phải biết mồ hình client-server hoạt động ntn. Ở đây tôi sẽ giải thích đơn giản , Máy tính cài đặt và chạy phần mềm RDBMS được gọi là client (máy khách). Mỗi khi chúng cần truy cập dữ liệu, chúng kết nối tới máy chủ (server) RDBMS. Cách thức này chính là mô hình “client-server”.
 Tiếp theo cta có khái niệm MySQL server. MySQL Server là máy tính hay một hệ các máy tính cài đặt phần mềm MySQL dành cho server để giúp bạn lưu trữ dữ liệu trên đó, để máy khách có thể truy cập vào quản lý. Dữ liệu này được đặt trong các bảng, và các bảng có mối liên hệ với nhau. MySQL server nhanh, an toàn, đáng tin cậy. Phần mềm MySQL cũng miễn phí và được phát triển, phân phối và hỗ trợ bởi Oracle Corporation.
 Từ đầu tới giờ cta nhắc tới MySQL khá nhiều vậy thì SQL có nghĩa là gì? MySQL và SQL không giống nhau. Hãy nhớ, MySQL là một trong các phần mềm RDBMS, hoạt động theo mô hình client-server. Nhưng, làm thế nào clietn và server liên lạc với nhau trong môi trường của RDBMS? Chúng sử dụng ngôn ngữ truy vấn có cấu trúc chung – Structured Query Language (SQL).
-## II.MySQL hoạt động ntn?
+## II.MySQL hoạt động ntn? <a name="2"></a>
 Qua những phần tôi vừa liệt kê cta đã có cái nhìn khái quát về MySQL vậy thì bây giờ hãy cùng nhau tìm hiểu MySQL hoạt dộng ntn?
 <img src="https://www.hostinger.vn/huong-dan/wp-content/uploads/sites/10/2019/05/mysql-hoat-dong-nhu-the-nao.jpg">
 Bạn có thể thấy hình ảnh trên giải thích cấu trúc cơ bản về việc giao tiếp giữa client-server model. Một máy client sẽ liên lạc với máy server trong một mạng nhất định. Mỗi client có thể gửi một request từ giao diện người dùng (Graphical user interface – GUI) trên màn hình, và server sẽ trả về kết quả như mong muốn. Miễn là cả hai hiểu nhau
@@ -37,14 +42,14 @@ Bạn có thể thấy hình ảnh trên giải thích cấu trúc cơ bản v�
 9.Vì mục đích này, quyền kiểm soát được chuyển đến Mô-đun Công cụ Lưu trữ Tóm tắt. Như đã nêu trước đây, MySQL hỗ trợ kiến ​​trúc công cụ lưu trữ có thể cắm được. Mô-đun công cụ lưu trữ trừu tượng gọi công cụ lưu trữ được chỉ định bằng cách sử dụng tính đa hình. Do đó, module này có thể được coi là giao diện giữa MySQL và các bộ máy lưu trữ khác. Trong khi truy vấn được xử lý, kết quả có thể được gửi đến người dùng. Khi truy vấn được thực hiện xong, điều khiển lại chuyển đến Chuỗi kết nối. Luồng kết nối thực hiện dọn dẹp và đợi các truy vấn tiếp theo từ người dùng cho đến khi người dùng thoát. Luồng thực thi của các yêu cầu khách hàng không thường xuyên như nô lệ sao chép bị bỏ qua, vì những yêu cầu này nằm ngoài phạm vi của điều này
 
 Vậy thì các công cụ lưu trữ mà cta vừa nhắc tới bên trên có nghĩa là gì cta sẽ timg hiểu ngay sau đây qua phần Storage Engine
-### III.Storage Engine
+## III.Storage Engine <a name="3"></a>
 Đầu tiên cần phải hiểu được Storage Engine là gì? Rất đơn giản Storage Engine cơ bản chỉ là cách lưu trữ dữ liệu trên hệ thống MySQL.
 Hiện nay có rất nhiều loại Storage Engine nhưng cta sẽ chỉ đi vào tìm hiểu về các loại phổ biến thôi nhé!
-# 1.Đầu tiên sẽ là MyISAM
+### 1.MyISAM
 Đây là một Storage Engine mặc định và được sử dụng phổ biến nhất. - Ưu điểm Engine duy nhất hỗ trợ Full Text Search lập chỉ mục toàn văn, cung cấp thuật toán tìm kiếm khá giống Google. Kiến trúc đơn giản nên có tốc độ truy suất (đọc và tìm kiếm) nhanh nhất trong các loại Storage Engine. - Nhược điểm MyISAM hoạt động theo cơ chế Table Level Locking, nên khi có hành động thực hiện (thêm/sửa/xóa) 1 bản ghi nào đó trong table thì table đó sẽ bị khóa lại, chờ tới khi hành động này được thực hiện xong thì hành động kia mới tiếp tục được thực hiện. Kiến trúc đơn giản, không ràng buộc nên loại Storage Engine này rất dễ bị crash, hỏng chỉ mục với những table có số lượng bản ghi lớn.
-# 2.InnoDB
+### 2.InnoDB
 Đây là Storage Engine mới hơn có nhiều tính năng và ưu điểm vượt trội hơn so với MyISAM. - Ưu điểm Engine này kiểm tra tính toàn vẹn và ràng buộc dữ liệu rất cao, khó xảy ra tình trạng hỏng chỉ mục và crash table. Hoạt động theo cơ chế Row Level Locking, vì vậy trong lúc thực hiện các hành động (thêm/sửa/xóa) trên 1 bản ghi, thì các hoạt động ở bản ghi khác trên table vẫn diễn ra bình thường. Hỗ trợ Transaction giúp đảm bảo an toàn khi thực hiện một khối lệnh SQL đảm bảo nhất quán dữ liệu. - Nhược điểm Hoạt động cần nhiều RAM hơn, nhưng nếu so sánh với MyISAM trong trường hợp tần suất Insert/Update/Delete lớn thì có khi sẽ lớn hơn vì cơ chế Table Level Locking sẽ gây ra hàng đợi lớn, gây chậm quá trình xử lý.(Đây là loại storage engine hay được sử dụng nhất hiện nay vì nó đảm bảo tính an toàn cũng như mối liên kết giữa các dữ liệu trên hệ thống).
-# 3.Memory
+### 3.Memory
 Đặc điểm
 Còn được gọi là HEAP tables.
 Lưu trữ
