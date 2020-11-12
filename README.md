@@ -18,10 +18,12 @@ Từ đầu tới giờ cta nhắc tới MySQL khá nhiều vậy thì SQL có n
 ## II.MySQL hoạt động ntn? <a name="2"></a>
 Qua những phần tôi vừa liệt kê cta đã có cái nhìn khái quát về MySQL vậy thì bây giờ hãy cùng nhau tìm hiểu MySQL hoạt dộng ntn?
 <img src="https://www.hostinger.vn/huong-dan/wp-content/uploads/sites/10/2019/05/mysql-hoat-dong-nhu-the-nao.jpg">
+## 1.Cách vận hành cơ bản
 Bạn có thể thấy hình ảnh trên giải thích cấu trúc cơ bản về việc giao tiếp giữa client-server model. Một máy client sẽ liên lạc với máy server trong một mạng nhất định. Mỗi client có thể gửi một request từ giao diện người dùng (Graphical user interface – GUI) trên màn hình, và server sẽ trả về kết quả như mong muốn. Miễn là cả hai hiểu nhau
 Để giải thích cặn kẽ hơn MySQL hoạt động từng bước ntn hãy nhìn vào hình ảnh sau đây :
 <img src="https://www.researchgate.net/profile/Nihal_Dindar/publication/228888034/figure/fig7/AS:300683292102667@1448699891986/High-level-view-of-MySQL-modules9.png">
-Để hiểu rõ hơn về kiến ​​trúc MySQL, hãy để chúng tôi giải thích việc thực thi một truy vấn. Bất cứ khi nào Máy chủ MySQL được khởi động, Mô-đun Khởi tạo Máy chủ sẽ thiết lập máy chủ bằng cách khởi tạo các biến và cấu trúc toàn cục, cấp phát bộ đệm bộ nhớ chung và thực hiện một số tác vụ khởi động khác. Sau khi khởi tạo xong, nó sẽ chuyển quyền điều khiển cho Trình quản lý kết nối.
+## 2.Cụ thể từng bước hoạt dộng
+Để hiểu rõ hơn về kiến trúc MySQL, hãy để chúng tôi giải thích việc thực thi một truy vấn. Bất cứ khi nào Máy chủ MySQL được khởi động, Mô-đun Khởi tạo Máy chủ sẽ thiết lập máy chủ bằng cách khởi tạo các biến và cấu trúc toàn cục, cấp phát bộ đệm bộ nhớ chung và thực hiện một số tác vụ khởi động khác. Sau khi khởi tạo xong, nó sẽ chuyển quyền điều khiển cho Trình quản lý kết nối.
 
 1.Đầu tiên trình quản lý kết nối xử lý các tác vụ giao thức truyền thông và chờ các yêu cầu của khách hàng. Bất cứ khi nào nó nhận được yêu cầu từ khách hàng, mô-đun Trình quản lý luồng sẽ tạo một luồng mới hoặc lấy một luồng từ bộ nhớ đệm để xử lý yêu cầu. Luồng kết nối, chịu trách nhiệm cho yêu cầu, trước tiên kết nối với Mô-đun người dùng để kiểm tra xác thực của người dùng.
 
